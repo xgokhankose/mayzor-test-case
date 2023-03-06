@@ -1,13 +1,15 @@
 import { StyleSheet, Dimensions } from "react-native";
-
-
+const device= Dimensions.get("window")
 export default StyleSheet.create({
   container: {
     alignItems: "center",
+    justifyContent:"center"
   },
-  home_date_button_container: {
+  inner_container: {
     flexDirection: "row",
-    justifyContent:"space-between",
+    alignItems:"center",
+    justifyContent:"center",
+    width:device.width*1,
 
   },
 });

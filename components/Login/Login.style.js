@@ -45,5 +45,11 @@ export default StyleSheet.create({
   },
   input:{
     flex:1
-  }
+  },
+  icon_password: {
+    width: 20,
+    height: 20,
+    marginHorizontal: 15,
+    marginVertical: 22.5,
+  },
 });

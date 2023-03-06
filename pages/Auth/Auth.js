@@ -5,24 +5,27 @@ import {
   TouchableOpacity,
   View,
   Image,
+  Alert,
 } from "react-native";
 import Login from "../../components/Login";
 import Register from "../../components/Register";
 import styles from "./Auth.style";
-import { useNavigation } from '@react-navigation/native';
-
+import { useNavigation } from "@react-navigation/native";
 
 const Auth = () => {
   const [buttonState, setButtonState] = useState(false);
-  const [email,setEmail]=useState("")
-  const [password,setPassword]=useState("")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const navigation = useNavigation();
 
-
-  const checkLogin = () =>{
-    navigation.navigate("HomePage")
-  }
+  const checkLogin = () => {
+    if (email == "emre@mayzor.net" && password == "mayzor") {
+      navigation.navigate("HomePage");
+    } else {
+      Alert.alert("bilgiler eşleşmedi");
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -30,49 +33,55 @@ const Auth = () => {
         <Text style={styles.title}>MAYZOR TEST CASE</Text>
       </View>
       <View style={styles.inner_container}>
-        
-        <View style={styles.auth_container}> 
-        <View style={styles.auth_buttons_container}>
-          <View style={[styles.button_container, { borderTopLeftRadius: 5 }]}>
-            <TouchableOpacity
-              onPress={() => setButtonState(false)}
-              style={buttonState ? styles.button : styles.button_focus}
-            >
-              <Text
-                style={
-                  buttonState ? styles.button_text : styles.button_text_focus
-                }
+        <View style={styles.auth_container}>
+          <View style={styles.auth_buttons_container}>
+            <View style={[styles.button_container, { borderTopLeftRadius: 5 }]}>
+              <TouchableOpacity
+                onPress={() => setButtonState(false)}
+                style={buttonState ? styles.button : styles.button_focus}
               >
-                Giriş Yap
-              </Text>
-            </TouchableOpacity>
+                <Text
+                  style={
+                    buttonState ? styles.button_text : styles.button_text_focus
+                  }
+                >
+                  Giriş Yap
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.icon_container}>
+              <Image
+                style={styles.icon}
+                source={require("../../assets/image7.png")}
+              />
+            </View>
+            <View
+              style={[styles.button_container, { borderTopRightRadius: 5 }]}
+            >
+              <TouchableOpacity
+                onPress={() => setButtonState(true)}
+                style={!buttonState ? styles.button : styles.button_focus}
+              >
+                <Text
+                  style={
+                    !buttonState ? styles.button_text : styles.button_text_focus
+                  }
+                >
+                  Kayıt Ol
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style={styles.icon_container}>
-            <Image
-              style={styles.icon}
-              source={require("../../assets/image7.png")}
+          {!buttonState ? (
+            <Login
+              onPressLogin={checkLogin}
+              onChangeEmail={setEmail}
+              onChangePassword={setPassword}
             />
-          </View>
-          <View style={[styles.button_container, { borderTopRightRadius: 5 }]}>
-            <TouchableOpacity
-              onPress={() => setButtonState(true)}
-              style={!buttonState ? styles.button : styles.button_focus}
-            >
-              <Text
-                style={
-                  !buttonState ? styles.button_text : styles.button_text_focus
-                }
-              >
-                Kayıt Ol
-              </Text>
-            </TouchableOpacity>
-          </View>
+          ) : (
+            <Register />
+          )}
         </View>
-        {!buttonState ? <Login onPressLogin={checkLogin} onChangeEmail={setEmail} onChangePassword={setPassword} /> : <Register/>}
-        
-        
-        </View>
-        
       </View>
     </SafeAreaView>
   );

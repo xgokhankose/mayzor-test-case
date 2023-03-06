@@ -20,7 +20,7 @@ const Login = ({ onChangeEmail, onChangePassword, onPressLogin }) => {
         />
       </View>
       <View style={styles.input_container}>
-        <Image style={styles.icon} source={require("../../assets/mail.png")} />
+        <Image style={styles.icon_password} source={require("../../assets/password.png")} />
 
         <TextInput
           onChangeText={onChangePassword}

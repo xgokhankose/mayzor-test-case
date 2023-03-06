@@ -1,9 +1,9 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import styles from "./Product.style";
 
-const Product = () => {
+const Product = ({onPress}) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity onPress={onPress} style={styles.container}>
       <View style={styles.image_container}>
         <Image style={styles.image} source={require("../../assets/shoe.png")} />
         <View style={styles.image_text_container}>
